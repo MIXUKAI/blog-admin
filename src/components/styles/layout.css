@@ -1,0 +1,14 @@
+#root .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, .2);
+  margin: 2px 24px 16px 0;
+  float: left;
+  position: relative;
+}
+#root .logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+}

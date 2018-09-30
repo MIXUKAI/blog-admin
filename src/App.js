@@ -1,23 +1,11 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import Button from 'antd/lib/button';
+import React from 'react';
+import MyLayout from './components/layout';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button type="primary">This is button</Button>
-      </div>
-    );
-  }
+const App = () => {
+  return (
+    <MyLayout/>
+  )
 }
 
 export default App;
