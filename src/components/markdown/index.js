@@ -87,17 +87,17 @@ class MdEditor extends React.Component {
         className="md-toolbar clearfix"
         style={{borderBottom: "1px solid #ccc"}}
       >
-        <li className="tb-btn"><a title="加粗" onClick={this._boldText.bind(this)}><i className="iconfont">&#xe61e;</i></a></li>{/* bold */}
-        <li className="tb-btn"><a title="斜体" onClick={this._italicText.bind(this)}><i className="iconfont">&#xe65a;</i></a></li> {/* italic */}
+        <li className="tb-btn"><a title="加粗" onClick={this._boldText.bind(this)}><i className="iconfont">&#xe663;</i></a></li>{/* bold */}
+        <li className="tb-btn"><a title="斜体" onClick={this._italicText.bind(this)}><i className="iconfont">&#xe7fb;</i></a></li> {/* italic */}
         <li className="tb-btn spliter"></li>
-        <li className="tb-btn"><a title="链接" onClick={this._linkText.bind(this)}><i className="iconfont">&#xe665;</i></a></li>{/* link */}
-        <li className="tb-btn"><a title="引用" onClick={this._blockquoteText.bind(this)}><i className="iconfont">&#xe715;</i></a></li> {/* blockquote */}
-        <li className="tb-btn"><a title="代码段" onClick={this._codeText.bind(this)}><i className="iconfont">&#xe605;</i></a></li> {/* code */}
-        <li className="tb-btn"><a title="图片" onClick={this._pictureText.bind(this)}><i className="iconfont">&#xe611;</i></a></li> {/* picture-o */}
+        <li className="tb-btn"><a title="链接" onClick={this._linkText.bind(this)}><i className="iconfont">&#xe66a;</i></a></li>{/* link */}
+        <li className="tb-btn"><a title="引用" onClick={this._blockquoteText.bind(this)}><i className="iconfont">&#xe608;</i></a></li> {/* blockquote */}
+        <li className="tb-btn"><a title="代码段" onClick={this._codeText.bind(this)}><i className="iconfont">&#xe7fc;</i></a></li> {/* code */}
+        <li className="tb-btn"><a title="图片" onClick={this._pictureText.bind(this)}><i className="iconfont">&#xe69c;</i></a></li> {/* picture-o */}
         <li className="tb-btn spliter"></li>
-        <li className="tb-btn"><a title="有序列表" onClick={this._listOlText.bind(this)}><i className="iconfont">&#xe67e;</i></a></li> {/* list-ol */}
-        <li className="tb-btn"><a title="无序列表" onClick={this._listUlText.bind(this)}><i className="iconfont">&#xe645;</i></a></li> {/* list-ul */}
-        <li className="tb-btn"><a title="标题" onClick={this._headerText.bind(this)}><i className="iconfont">&#xe607;</i></a></li> {/* header */}
+        <li className="tb-btn"><a title="有序列表" onClick={this._listOlText.bind(this)}><i className="iconfont">&#xe6cf;</i></a></li> {/* list-ol */}
+        <li className="tb-btn"><a title="无序列表" onClick={this._listUlText.bind(this)}><i className="iconfont">&#xe76c;</i></a></li> {/* list-ul */}
+        <li className="tb-btn"><a title="标题" onClick={this._headerText.bind(this)}><i className="iconfont">&#xe673;</i></a></li> {/* header */}
         { this._getExternalBtn() }
       </ul>
     )
@@ -125,21 +125,21 @@ class MdEditor extends React.Component {
       <ul className="md-modebar">
         <li className="tb-btn pull-right">
           <a className={checkActive('preview')} onClick={this._changeMode('preview')} title="预览模式">
-            <i className="iconfont">&#xe7b9;</i>
+            <i className="iconfont">&#xe625;</i>
           </a>
         </li> { /* preview mode */}
         <li className="tb-btn pull-right">
           <a className={checkActive('split')} onClick={this._changeMode('split')} title="分屏模式">
-            <i className="iconfont">&#xe613;</i>
+            <i className="iconfont">&#xe603;</i>
           </a>
         </li> { /* split mode */}
         <li className="tb-btn pull-right">
           <a className={checkActive('edit')} onClick={this._changeMode('edit')} title="编辑模式">
-            <i className="iconfont">&#xe636;</i>
+            <i className="iconfont">&#xe60b;</i>
           </a>
         </li> { /* edit mode */}
         <li className="tb-btn spliter pull-right"></li>
-        <li className="tb-btn pull-right"><a title="全屏模式" onClick={this._toggleFullScreen.bind(this)}><i className="iconfont">&#xe612;</i></a></li> {/* full-screen */}
+        <li className="tb-btn pull-right"><a title="全屏模式" onClick={this._toggleFullScreen.bind(this)}><i className="iconfont">&#xe6fe;</i></a></li> {/* full-screen */}
       </ul>
     )
   }
@@ -152,8 +152,8 @@ class MdEditor extends React.Component {
     })
     if (this._ltr) clearTimeout(this._ltr)
     this._ltr = setTimeout(() => {
-      this.setState({ result: marked(this.textControl.value) }) // change state
-      this.props.editorChange(this.textControl.value, this.state.result)
+      this.setState({ result: marked(this.textControl.value) }); // change state
+      // this.props.editorChange(this.textControl.value, this.state.result);
     }, 300)
   }
 

@@ -6,7 +6,6 @@ import MyEditor from './markdown';
 const { Content } = Layout;
 
 const contetnStyle = {
-  maxWidth: '1024px',
   margin: '24px',
   padding: 24,
   minHeight: 280,
