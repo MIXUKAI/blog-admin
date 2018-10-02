@@ -16,16 +16,18 @@ const PublishList = () => (
   <List
     itemLayout="vertical"
     dataSource={listData}
+    pagination="true"
     renderItem={item => (
       <List.Item
         key={item.title}
-        extra={
-          [<Button type="primary" icon="setting" style={{ marginRight: 10 }}>编辑</Button>, <Button type="danger" icon="delete">删除</Button>]
+        actions={
+          [<Button icon="setting" style={{ marginRight: 10 }} size="small">编辑</Button>, <Button type="danger" ghost icon="delete" size="small">删除</Button>]
         }
+        extra={<img width={272} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
       >
         <List.Item.Meta
           title={[<a href="https://ant.design" style={{ marginRight: 10 }}>{item.title}</a>]}
-          description={[<Tag color="blue">javaScript</Tag>, <Tag color="blue">Node.js</Tag>, <Tag color="blue">mongodb</Tag>]}
+          description={[<Tag>javaScript</Tag>, <Tag>Node.js</Tag>, <Tag>mongodb</Tag>]}
         />
         <div>
           <div style={{ maxWidth: 960 }}>{item.content}</div>
