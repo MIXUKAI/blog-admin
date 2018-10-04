@@ -12,7 +12,7 @@ for (let i = 0; i < 5; i++) {
   });
 }
 
-const PublishList = () => (
+const Publish = () => (
   <List
     itemLayout="vertical"
     dataSource={listData}
@@ -38,5 +38,5 @@ const PublishList = () => (
   />
 );
 
-export default PublishList;
+export default Publish;
 

@@ -1,23 +1,24 @@
 import React from 'react';
 import { Layout } from 'antd';
 import './styles/content.css';
-import MyEditor from './markdown';
 
 const { Content } = Layout;
 
 const contetnStyle = {
-  margin: '24px',
+  margin: 24,
   padding: 24,
   minHeight: 280,
-  height: '100%'
+  height: '100%',
+  backgroundColor: '#fff'
 }
 
-const EditContent = () => {
+const MyContent = (props) => {
+  const { children } = props;
   return (
     <Content style={contetnStyle}>
-      <MyEditor />
+        { children }
     </Content>
   );
 };
 
-export default EditContent;
+export default MyContent;
