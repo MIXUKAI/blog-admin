@@ -3,18 +3,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import MyLayout from './layout';
 import './App.css';
 
-// some views about of articles
-import AddArticle from './views/article/Add';
-import Published from './views/article/Publish';
-import Drafts from './views/article/Draft';
+import ArticleRoutes from './views/ArticleRoutes';
 
 const App = () => {
   return (
     <Router>
       <MyLayout>
-        <Route path="/article/add" component={AddArticle}/>
-        <Route path="/article/publish" component={Published}/>
-        <Route path="/article/draft" component={Drafts}/>
+        <Route path="/article" component={ArticleRoutes}/>
       </MyLayout>
     </Router>
   )
