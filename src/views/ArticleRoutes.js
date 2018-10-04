@@ -8,11 +8,11 @@ import Drafts from './article/Draft';
 
 const ArticleRoutes = ({ match }) => {
   return (
-    <div>
-      <Route path={`${match.url}/add`} component={AddArticle} />
-      <Route path={`${match.url}/publish`} component={Published} />
+    [
+      <Route path={`${match.url}/add`} component={AddArticle} />,
+      <Route path={`${match.url}/publish`} component={Published} />,
       <Route path={`${match.url}/draft`} component={Drafts} />
-    </div>
+    ]
   );
 };
 

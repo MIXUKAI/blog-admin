@@ -11,14 +11,14 @@ class MdEditor extends React.Component {
       onoff: false,
       panelClass: 'md-panel',
       mode: 'split',
-      _isDirty:true,
+      _isDirty: true,
       isFullScreen: false,
       result: marked(props.content || '')
     }
   }
 
   componentDidUpdate() {
-    if ( !this.state.onoff && this.props.content) {
+    if (!this.state.onoff && this.props.content) {
       this.setState( {
         onoff: true,
         result: marked(this.props.content || '')
@@ -52,13 +52,16 @@ class MdEditor extends React.Component {
     return (
       <div className={panelClass}>
         <div className="md-menubar">
-          {this._getModeBar()}
-          {this._getToolBar()}
+          { this._getModeBar() }
+          { this._getToolBar() }
         </div>
         <div className={editorClass}>
-          <textarea ref="editor" name="content" onChange={this._onChange.bind(this)}>
-          </textarea>
-          {/* style={{height: this.state.editorHeight + 'px'}} */}
+          <textarea
+            ref="editor" 
+            name="content" 
+            onChange={this._onChange.bind(this)}
+            style={{ height: this.props.editorHeight + 'px' }}
+          />
         </div>
         <div
           className={previewClass} 
@@ -153,7 +156,7 @@ class MdEditor extends React.Component {
     if (this._ltr) clearTimeout(this._ltr)
     this._ltr = setTimeout(() => {
       this.setState({ result: marked(this.textControl.value) }); // change state
-      // this.props.editorChange(this.textControl.value, this.state.result);
+      this.props.editorChange && this.props.editorChange(this.textControl.value, this.state.result);
     }, 300)
   }
 

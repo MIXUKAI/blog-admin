@@ -6,7 +6,7 @@ class PrefixIconInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.value || ''
+      value: ''
     };
   }
 
@@ -17,6 +17,9 @@ class PrefixIconInput extends React.Component {
 
   onChangeInputValue = (e) => {
     this.setState({ value: e.target.value });
+
+    // if props.getValue exist then invoke this funtion 
+    this.props.getValue && this.props.getValue(this.state.value);
   }
 
   render() {
@@ -25,12 +28,12 @@ class PrefixIconInput extends React.Component {
     const suffix = value ? <Icon type="close-circle" onClick={this.emitEmpty} /> : null;
     return (
       <Input
+        {...this.props}
         prefix={<Icon type={icontype} style={{ color: 'rgba(0,0,0,.25)' }} />}
         suffix={suffix}
-        value={value}
         onChange={this.onChangeInputValue}
         ref={node => this.myinput = node}
-        {...this.props}
+        value={value}
       />
     );
   }
