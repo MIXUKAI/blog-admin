@@ -6,7 +6,7 @@ class PrefixIconInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: props.value || ''
     };
   }
 
@@ -16,10 +16,13 @@ class PrefixIconInput extends React.Component {
   }
 
   onChangeInputValue = (e) => {
-    this.setState({ value: e.target.value });
+    this.setState({ value: e.target.value }, () => {
+      this.props.getValue && this.props.getValue(this.state.value);
+    });
+  }
 
-    // if props.getValue exist then invoke this funtion 
-    this.props.getValue && this.props.getValue(this.state.value);
+  componentWillReceiveProps(nextProps) {
+    this.setState({ value: nextProps.value });
   }
 
   render() {

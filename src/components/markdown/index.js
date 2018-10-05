@@ -39,6 +39,12 @@ class MdEditor extends React.Component {
     this.previewControl=null;
   }
 
+  // if props changed, then setState
+  componentWillReceiveProps(nextProps) {
+    this.textControl.value = nextProps.content;
+    this.setState({ result: marked(this.textControl.value) });
+  }
+
   render () {
     const panelClass=cNames([ 'md-panel', {
       'fullscreen': this.state.isFullScreen
