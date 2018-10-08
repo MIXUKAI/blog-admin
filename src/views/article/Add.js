@@ -2,17 +2,13 @@ import React from 'react';
 import { Input, Select, Icon, Button, message } from 'antd';
 import axios from 'axios';
 
+import baseApiUrl from '../../utils/api';
 import MdEditor from '../../components/markdown';
 import PrefixIconInput from '../../components/PrefixIconInput';
 
 const { TextArea } = Input;
 const InputGroup = Input.Group;
 const Option = Select.Option;
-
-const children = [];
-for (let i = 10; i < 36; i++) {
-  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
-}
 
 class EditPage extends React.Component {
   state = {
@@ -41,7 +37,8 @@ class EditPage extends React.Component {
       tags: [],
       author: '',
       link: '',
-      md_content: ''
+      md_content: '',
+      children: []
     });
   };
   // Invoked when add successfully or unsuccessfully
@@ -58,7 +55,7 @@ class EditPage extends React.Component {
   }
 
   publish = () => {
-    const url = 'http://127.0.0.1:8080/api/article/add';
+    const url = `${baseApiUrl}/article/add`;
     const data = {
       title: this.state.title,
       description: this.state.desc,
@@ -69,6 +66,22 @@ class EditPage extends React.Component {
     axios.post(url, data)
       .then(this.success)
       .catch(this.fail);
+  }
+
+  fetchTags() {
+    const url = `${baseApiUrl}/tag/`;
+    axios.get(url)
+      .then(res => {
+        const children = res.data.map(item => 
+          <Option key={item._id}>{ item.name }</Option>
+        )
+        this.setState({ children });
+      }).catch(err => {
+        console.error(err);
+      })
+  }
+  componentDidMount() {
+    this.fetchTags();
   }
 
   render() {
@@ -96,7 +109,7 @@ class EditPage extends React.Component {
           onChange={this.getTags}
           value={this.state.tags}
         >
-          {children}
+          {this.state.children}
         </Select>
         <InputGroup compact>
           <PrefixIconInput

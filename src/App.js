@@ -4,7 +4,7 @@ import MyLayout from './layout';
 import './App.css';
 
 import ArticleRoutes from './views/article/ArticleRoutes';
-import TagList from './views/Tags';
+import TagList from './views/tag/Tags';
 
 const App = () => {
   return (
