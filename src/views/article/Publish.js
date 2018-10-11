@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { List, Button, Tag } from 'antd';
+import { List, Button, Tag, message, Popconfirm } from 'antd';
 import moment from 'moment';
 
 import baseApiUrl from '../../utils/api';
@@ -12,6 +12,25 @@ class Publish extends React.Component {
     this.state = {
       listData: []
     }
+  }
+
+  success = (res) => {
+    if (res.data.code === 0) {
+      message.success('删除成功');
+      this.clearFields();
+    } else {
+      message.error('删除失败');
+    }
+  }
+  fail = (err) => {
+    console.error(err);
+  }
+
+  handleDelete = (id) => {
+    const url = `${baseApiUrl}/article/delete/${id}`;
+    axios.post(url)
+      .then(this.success)
+      .catch(this.fail)
   }
 
   fetchAllArticles = () => {
@@ -48,7 +67,11 @@ class Publish extends React.Component {
         renderItem={item => (
           <List.Item
             key={item.title}
-            extra={[<Button icon="setting" style={{ marginRight: 10 }} size="small">编辑</Button>, <Button type="danger" ghost icon="delete" size="small">删除</Button>]}
+            extra={
+              <Popconfirm placement="left" title="确认删除该篇已发布的文章吗" onConfirm={() => this.handleDelete(item.id)} okText="Yes" cancelText="No">
+                <Button type="danger" ghost icon="delete" size="small"  id={item.id}>删除</Button>
+              </Popconfirm>
+            }
           >
             <List.Item.Meta
               title={[<Link to={`/article/edit/${item.id}`}style={{marginRight: 10}}>{item.title}</Link>, <span style={{fontSize: 15, color: 'rgb(59,145,255)'}}>创建于: {item.createAt}</span>]}
