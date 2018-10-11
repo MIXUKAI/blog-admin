@@ -54,6 +54,23 @@ class EditPage extends React.Component {
     console.error(err);
   }
 
+  update = () => {
+    const id = this.props.match.params.id;
+    const url = `${baseApiUrl}/article/update/${id}`;
+    const data = {
+      title: this.state.title,
+      description: this.state.desc,
+      tags: this.state.tags,
+      source_link: this.state.link,
+      author: this.state.author,
+      md_content: this.state.md_content,
+      html_content: this.state.html_content
+    };
+    axios.post(url, data)
+      .then(this.success)
+      .catch(this.fail);
+  }
+
   publish = () => {
     const url = `${baseApiUrl}/article/add`;
     const data = {
@@ -61,7 +78,9 @@ class EditPage extends React.Component {
       description: this.state.desc,
       tags: this.state.tags,
       md_content: this.state.md_content,
-      html_content: this.state.html_content
+      html_content: this.state.html_content,
+      source_link: this.state.link,
+      author: this.state.author
     };
     axios.post(url, data)
       .then(this.success)
@@ -80,11 +99,35 @@ class EditPage extends React.Component {
         console.error(err);
       })
   }
+
+  getArticleById = (id) => {
+    const url = `${baseApiUrl}/article/${id}`;
+    axios.get(url)
+      .then(res => {
+        const data = res.data;
+        this.setState({
+          title: data.title,
+          desc: data.description,
+          tags: data.tags,
+          author: data.author,
+          link: data.source_link || '',
+          md_content: data.md_content,
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   componentDidMount() {
+    const match = this.props.match;
+    console.log(match);
+    if (match.path === '/article/edit/:id') {
+      this.getArticleById(match.params.id);
+    }
     this.fetchTags();
   }
 
   render() {
+    const { match } = this.props;
     return (
       <div>
         <PrefixIconInput
@@ -134,9 +177,15 @@ class EditPage extends React.Component {
           <Button>
             <Icon type="save" />保存
           </Button>
-          <Button type="primary" onClick={this.publish}>
-            <Icon type="smile" />发表
-          </Button>
+          {
+            match.path === '/article/edit/:id' ?
+            <Button type="primary" onClick={this.update}>
+              <Icon type="smile" />更新
+            </Button> :
+            <Button type="primary" onClick={this.publish}>
+              <Icon type="smile" />发表
+            </Button>
+          }
         </Button.Group>
       </div>
     );

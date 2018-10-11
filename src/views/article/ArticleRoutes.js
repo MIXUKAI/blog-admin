@@ -10,6 +10,7 @@ const ArticleRoutes = ({ match }) => {
   return (
     [
       <Route path={`${match.url}/add`} component={AddArticle} key="add"/>,
+      <Route path={`${match.url}/edit/:id`} component={AddArticle} key="add"/>,
       <Route path={`${match.url}/publish`} component={Published} key="publish"/>,
       <Route path={`${match.url}/draft`} component={Drafts} key="draft" />
     ]
