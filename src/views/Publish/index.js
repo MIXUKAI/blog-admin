@@ -14,6 +14,7 @@ class Publish extends React.Component {
   }
 
   componentDidMount() {
+    // TODO: 需要在这里new吗还是那api模块里就可以new了
     new Promise(fetchAllArticles)
       .then(data => this.setState({listData: data}))
       .catch(err => console.error(err));

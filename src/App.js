@@ -4,14 +4,14 @@ import MyLayout from './layout';
 import './App.css';
 
 import ArticleRoutes from './views/article/ArticleRoutes';
-import TagList from './views/tag/Tags';
+import TagPage from './views/Tags';
 
 const App = () => {
   return (
     <Router>
       <MyLayout>
         <Route path="/article" component={ArticleRoutes} />
-        <Route path="/tags" component={TagList} />
+        <Route path="/tag" component={TagPage} />
       </MyLayout>
     </Router>
   )

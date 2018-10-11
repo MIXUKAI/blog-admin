@@ -23,7 +23,7 @@ const MyMenu = () => {
         </Menu.Item>
       </SubMenu>
       <Menu.Item key="tag">
-        <Link to="/tags">
+        <Link to="/tag">
           <Icon type="tags" />
           <span>标签管理</span>
         </Link>

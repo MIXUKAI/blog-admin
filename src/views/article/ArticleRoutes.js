@@ -3,14 +3,15 @@ import { Route } from 'react-router-dom';
 
 // some views about of articles
 import AddArticle from './Add';
-import Published from './Publish';
+import Published from '../Publish';
 import Drafts from './Draft';
 
 const ArticleRoutes = ({ match }) => {
   return (
     [
       <Route path={`${match.url}/add`} component={AddArticle} key="add"/>,
-      <Route path={`${match.url}/edit/:id`} component={AddArticle} key="add"/>,
+      <Route exact path={`${match.url}/edit/:id`} component={AddArticle} key="editArticle"/>,
+      <Route path={`${match.url}/edit/draft/:id`} component={AddArticle} key="editDraft"/>,
       <Route path={`${match.url}/publish`} component={Published} key="publish"/>,
       <Route path={`${match.url}/draft`} component={Drafts} key="draft" />
     ]
