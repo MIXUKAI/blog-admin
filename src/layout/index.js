@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
+import Avatar from './Avatar';
 import MyMenu from './Menu';
 import MyContent from './Content';
 import './styles/index.css';
@@ -11,7 +12,7 @@ const MyLayout = (props) => (
     <Sider
       style={{ backgroundColor: '#fff' }}
     >
-      <div className="logo" />
+      <Avatar />
       <MyMenu />
     </Sider>
     <Layout>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { message } from 'antd';
 import axios from 'axios';
 
 import baseApiUrl from '../../utils/api';
@@ -9,16 +9,18 @@ const url = `${baseApiUrl}/authenticate`;
 
 class Login extends React.Component {
   handleSubmit = (value) => {
-    console.log(value);
-
     axios.post(url, value)
       .then(res => {
         if (res.status === 200) {
           const { token } = res.data;
+          message.success('登录成功');
           localStorage.setItem('token', token);
-          this.props.history.push('/');
+          this.props.history.goBack();
         }
-      }).catch(err => console.log(err));
+      }).catch(err => {
+        console.error(err);
+        message.error("密码输入错误!")
+      });
   }
 
   render() {
@@ -30,4 +32,4 @@ class Login extends React.Component {
   }
 }
 
-export default withRouter(Login);
+export default Login;

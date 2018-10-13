@@ -45,6 +45,8 @@ class EditPage extends React.Component {
     if (res.data.code === 0) {
       message.success('添加文章成功');
       this.clearFields();
+    } else if (res.data.status === 401) {
+      message.error('请登录后再操作');
     } else {
       message.error('添加文章失败');
     }

@@ -8,6 +8,8 @@ import baseApiUrl from '../../utils/api';
 function success(res) {
   if (res.data.code === 0) {
     message.success('删除成功');
+  } else if (res.data.status === 401) {
+    message.error('请登录后再操作')
   } else {
     message.error('删除失败');
   }
