@@ -18,9 +18,9 @@ function fail(err) {
 
 function handleDelete(id) {
   const url = `${baseApiUrl}/draft/delete/${id}`;
-  axios.post(url)
+  axios({ method: 'POST', url: url, headers: { Authorization: "Bearer " + localStorage.getItem('token') } })
     .then(success)
-    .catch(fail)
+    .catch(fail);
 }
 
 const columns = [{

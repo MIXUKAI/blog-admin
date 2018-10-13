@@ -74,7 +74,9 @@ class EditPage extends React.Component {
       `${baseApiUrl}/article/update/${id}` :
       `${baseApiUrl}/draft/update/${id}`;
     const data = this.collectionState();
-    axios.post(url, data)
+    axios.post(url, data, {
+      headers: { Authorization: "Bearer " + localStorage.getItem('token') }
+    })
       .then(this.success)
       .catch(this.fail);
   }
@@ -91,7 +93,9 @@ class EditPage extends React.Component {
     console.log(url);
     const data = this.collectionState();
     console.log(data);
-    axios.post(url, data)
+    axios.post(url, data, {
+      headers: { Authorization: "Bearer " + localStorage.getItem('token') }
+    })
       .then(this.success)
       .catch(this.fail);
   }
@@ -100,7 +104,9 @@ class EditPage extends React.Component {
   saveDraft = () => {
     const url = `${baseApiUrl}/draft/add`;
     const data = this.collectionState();
-    axios.post(url, data)
+    axios.post(url, data, {
+      headers: { Authorization: "Bearer " + localStorage.getItem('token') }
+    })
       .then(this.success)
       .catch(this.fail);
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import baseApiUrl from '../../utils/api';
@@ -6,7 +7,7 @@ import LoginForm from './Form';
 
 const url = `${baseApiUrl}/authenticate`;
 
-export default class extends React.Component {
+class Login extends React.Component {
   handleSubmit = (value) => {
     console.log(value);
 
@@ -15,6 +16,7 @@ export default class extends React.Component {
         if (res.status === 200) {
           const { token } = res.data;
           localStorage.setItem('token', token);
+          this.props.history.push('/');
         }
       }).catch(err => console.log(err));
   }
@@ -27,3 +29,5 @@ export default class extends React.Component {
     )
   }
 }
+
+export default withRouter(Login);

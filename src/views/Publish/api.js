@@ -24,5 +24,8 @@ export const fetchAllArticles = (resolve, reject) => {
 
 export const deleteArticle = (id) => {
   const url = `${baseApiUrl}/article/delete/${id}`;
-  return axios.post(url);
+  console.log(url);
+  // TODO: 这样不行
+  // return axios.post(url, { headers: { Authorization: "Bearer " + localStorage.getItem('token') }});
+  return axios({ method: 'POST', url: url, headers: { Authorization: "Bearer " + localStorage.getItem('token')}});
 };
