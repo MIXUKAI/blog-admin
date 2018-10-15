@@ -2,6 +2,7 @@ import React from 'react';
 import { List, Icon } from 'antd';
 import axios from 'axios';
 
+import baseApiUrl from '../../utils/api';
 import Drawer from './Drawer';
 import showConfirm from './Confirm';
 
@@ -21,7 +22,7 @@ class TagList extends React.Component {
   }
 
   fetchTags = () => {
-    const url = 'http://127.0.0.1:8080/api/tag/';
+    const url = `${baseApiUrl}/tag/`;
     axios.get(url)
       .then(res => {
         const data = res.data.map(item => item.name);
